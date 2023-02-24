@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Calculator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <input type="text" placeholder="0" id="outputScreen">
+            <button onclick="clearInput()">Cl</button>
+            <button onclick="del()">DEL</button>
+            <button onclick="display('%')">%</button>
+            <button onclick="display('/')">/</button>
+            <button onclick="display('7')">7</button>
+            <button onclick="display('8')">8</button>
+            <button onclick="display('9')">9</button>
+            <button onclick="display('*')">*</button>
+            <button onclick="display('4')">4</button>
+            <button onclick="display('5')">5</button>
+            <button onclick="display('6')">6</button>
+            <button onclick="display('-')">-</button>
+            <button onclick="display('1')">1</button>
+            <button onclick="display('2')">2</button>
+            <button onclick="display('3')">3</button>
+            <button onclick="display('+')">+</button>
+            <button onclick="display('.')">.</button>
+            <button onclick="display('0')">0</button>
+            <button onclick="calculator()" class="equal-btn">=</button>  
+            <button onclick="toggleMode()">Mode</button>
+
+        </div>
+    </div>
+    
+
+
+</body>
+</html>
+
+
+<script>
+
+function toggleMode() {
+  const body = document.body;
+  if (body.classList.contains('light-mode')) {
+    body.classList.remove('light-mode');
+    body.classList.add('dark-mode');
+  } else {
+    body.classList.remove('dark-mode');
+    body.classList.add('light-mode');
+  }
+}
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add('dark-mode');
+} else {
+  document.body.classList.add('light-mode');
+}
+
+    function display(value) {
+    document.getElementById("outputScreen").value += value;
+}
+
+function clearInput() {
+  document.getElementById("outputScreen").value = "";
+}
+
+
+
+function del() {
+    var value = document.getElementById("outputScreen").value;
+    document.getElementById("outputScreen").value = value.substr(0, value.length - 1);
+}
+
+function calculator() {
+    var expression = document.getElementById("outputScreen").value;
+    if (expression) {
+        try {
+            var result = eval(expression);
+            document.getElementById("outputScreen").value = result;
+        } catch (error) {
+            alert("Invalid expression");
+        }
+    }
+}
+
+//     // let outputScreen = document.getElementById("outputScreen")
+//     // function display(num){
+//     //     outputScreen.value += num;
+//     // }
+//     // function calculator(){
+//     //     try{
+//     //         outputScreen.value = eval(outputScreen.value);
+
+//     //     }
+//     //     catch(err)
+//     //     {
+//     //         alert("invalid")
+//     //     }
+//     //     function clear(){
+//     //         outputScreen.value = "";
+//     //     }
+//     // }
+
+//     let outputScreen = document.getElementById("outputScreen")
+
+// function display(num){
+// outputScreen.value += num;
+// }
+
+// function calculator(){
+// try{
+// outputScreen.value = eval(outputScreen.value);
+// }
+// catch(err) {
+// alert("invalid");
+// }
+// }
+
+// function clear(){
+// outputScreen.value = "";
+// }
+
+</script>
